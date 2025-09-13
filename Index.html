@@ -3,26 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>婚禮抽獎遊戲</title>
+  <title>愛在幸福抽抽樂</title>
   <style>
     body {
       text-align: center;
       font-family: "Microsoft JhengHei", sans-serif;
-      background: #fff0f5;
+      background: linear-gradient(135deg, #fff0f5, #ffe6f0);
       padding: 40px;
     }
-    h1 { color: #d63384; }
+    h1 { 
+      color: #d63384; 
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px #fff;
+    }
     .lottery-box {
       margin-top: 30px;
       font-size: 60px;
-      padding: 30px;
-      border: 4px solid #d63384;
-      border-radius: 16px;
-      background: #fff;
+      padding: 40px;
+      border: 8px solid gold;
+      border-radius: 20px;
+      background: linear-gradient(to bottom, #fffbe7, #ffe082);
       display: inline-block;
-      min-width: 240px;
+      min-width: 260px;
       font-weight: bold;
       color: #b52d6b;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
     }
     button {
       margin: 15px;
@@ -33,13 +39,14 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     button:hover { background: #b52d6b; }
     #history {
       margin-top: 30px;
       padding: 20px;
       background: #ffffffcc;
-      border: 2px solid #d63384;
+      border: 3px solid gold;
       border-radius: 10px;
       max-width: 650px;
       margin-left: auto;
@@ -47,6 +54,7 @@
       text-align: left;
       font-size: 18px;
       line-height: 1.6;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     #history strong {
       color: #d63384;
@@ -54,15 +62,12 @@
   </style>
 </head>
 <body>
-  <h1>🎉 婚禮抽獎遊戲 🎉</h1>
+  <h1>💖 愛在幸福抽抽樂 💖</h1>
   <div class="lottery-box" id="result">點擊下方按鈕開始抽獎！</div><br>
   <button onclick="draw()">開始抽獎</button>
   <button onclick="resetGame()">重新開始</button>
 
   <div id="history"><strong>已抽出號碼：</strong><br></div>
-
-  <!-- 歡呼音效（免費音效可自行換檔案） -->
-  <audio id="cheer-sound" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
   <script>
     let numbers = [];
@@ -76,7 +81,7 @@
       document.getElementById("history").innerHTML = "<strong>已抽出號碼：</strong><br>";
     }
 
-    async function draw() {
+    function draw() {
       if (rolling) return; // 防止重複點擊
       if (numbers.length === 0) {
         document.getElementById("result").innerText = "🎊 所有號碼都抽完了！";
@@ -102,10 +107,6 @@
           drawn.push(selected);
           box.innerText = "🎰 " + selected + " 🎰";
           updateHistory();
-
-          // 播放歡呼音效
-          document.getElementById("cheer-sound").play();
-
           rolling = false;
           return;
         }
